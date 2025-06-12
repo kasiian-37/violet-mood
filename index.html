@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Відео з паузою по кліку</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .play-button::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="video-container" id="videoContainer">
+    <video id="myVideo" playsinline>
+      <source src="video_2025-06-09_12-48-27.mp4" type="video/mp4" />
+      Ваш браузер не підтримує відео.
+    </video>
+    <div class="play-button" id="playBtn"></div>
+  </div>
+
+  <script>
+    const video = document.getElementById("myVideo");
+    const playBtn = document.getElementById("playBtn");
+    const container = document.getElementById("videoContainer");
+    playBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      video.play();
+      playBtn.classList.add("hidden");
+    });
+    container.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+        playBtn.classList.add("hidden");
+      } else {
+        video.pause();
+        playBtn.classList.remove("hidden");
+      }
+    });
+    video.addEventListener("ended", () => {
+      playBtn.classList.remove("hidden");
+    });
+  </script>
+
+  <audio autoplay loop>
+    <source src="20250609_091719.m4a" type="audio/mpeg">
+    Ваш браузер не підтримує аудіо.
+  </audio>
+
+</body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
